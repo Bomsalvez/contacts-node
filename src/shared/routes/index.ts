@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import contactRoutes from '@modules/contact/routes/contact.routes';
+import contactRoutes from "@shared/routes/contact.routes";
 
 const routes = Router();
 routes.use('/contact', contactRoutes);
-
 export default routes;

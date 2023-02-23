@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import ContactController from '@modules/contact/controller/ContactController';
 import { celebrate, Joi, Segments } from 'celebrate';
+import ContactController from "@controller/ContactController";
 
 const contactRoutes = Router();
 const controller = new ContactController();

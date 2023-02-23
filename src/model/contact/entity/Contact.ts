@@ -9,7 +9,7 @@ export class Contacts {
   nameContact: string;
 
   @Column('date', { name: 'dateBirthContact', nullable: true })
-  dateBirthContact: Date | string;
+  dateBirthContact: Date;
 
   @Column('varchar', { name: 'nicknameContact', nullable: true, length: 30 })
   nicknameContact: string;

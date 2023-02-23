@@ -2,8 +2,8 @@ import routes from '@shared/routes';
 import cors from 'cors';
 import express from 'express';
 import 'express-async-errors';
-import resourceExceptionHandler from '@shared/errors/ResourceExceptionHandler';
 import { errors } from 'celebrate';
+import resourceExceptionHandler from "@settings/exception/ResourceExceptionHandler";
 
 const app = express();
 app.use(cors());

@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import { Contacts } from '@modules/contact/typeorm/entity/Contacts';
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
@@ -12,7 +11,7 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   migrationsRun: true,
   logging: false,
-  entities: [Contacts],
-  migrations: ['./src/shared/typeorm/migrations/*.ts'],
+  entities: ['src/model/**/entity/*.ts'],
+  migrations: ['./src/settings/migrations/*.ts'],
 });
 

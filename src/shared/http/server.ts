@@ -1,6 +1,6 @@
 import 'reflect-metadata';
-import { AppDataSource } from '@config/database/data-source';
 import { app } from '@shared/http/app';
+import {AppDataSource} from "../../settings/database/data-source";
 
 AppDataSource.initialize().then(() => {
   app.listen(8088, () => {

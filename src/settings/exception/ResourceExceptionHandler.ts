@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import AppError from '@shared/errors/AppError';
+import AppError from "@settings/exception/AppError";
 
 const resourceExceptionHandler = (error: Error, request: Request, response: Response, next: NextFunction) => {
   if (error instanceof AppError) {
