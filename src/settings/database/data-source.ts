@@ -1,17 +1,21 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
+import { CreateContact1677193679580 } from '../migrations/1677193679580-CreateContact';
+import { Contacts } from '../../model/contact/entity/Contact';
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
-  host: 'localhost',
+  host: 'mysql',
   port: 3306,
   username: 'root',
-  password: '@braTe07',
+  password: 'umaSenhaAi',
   database: 'db_contacts',
   synchronize: false,
   migrationsRun: true,
   logging: false,
-  entities: ['src/model/**/entity/*.ts'],
-  migrations: ['./src/settings/migrations/*.ts'],
+  entities: [Contacts],
+  migrations: [CreateContact1677193679580],
 });
+
+
 

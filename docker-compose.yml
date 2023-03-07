@@ -1,0 +1,28 @@
+services:
+
+  app:
+    image: node:alpine
+    command: sh -c "npm i && npm run dev && npm run typeormRun"
+    ports:
+      - 3000:3000
+    working_dir: /usr/contacts-node/
+    volumes:
+      - ./:/usr/contacts-node/
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: umaSenhaAi
+      MYSQL_DATABASE: db_contacts
+
+  mysql:
+    image: mysql
+    volumes:
+      - contact-db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: umaSenhaAi
+      MYSQL_DATABASE: db_contacts
+    ports:
+      - 3307:3306
+
+volumes:
+  contact-db-data:

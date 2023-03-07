@@ -1,7 +1,7 @@
 import { Contacts } from '@model/contact/entity/Contact';
-import { ContactCreated } from '@model/contact/module/ContactCreate';
+import { ContactCreate } from '@model/contact/module/ContactCreate';
 import { Repository } from 'typeorm';
-import { AppDataSource } from '../settings/database/data-source';
+import { AppDataSource } from '@settings/database/data-source';
 
 export default class ContactRepository {
   private repository: Repository<Contacts>;
@@ -11,7 +11,7 @@ export default class ContactRepository {
     this.repository = AppDataSource.getRepository(Contacts);
   }
 
-  async saveContact({ nameContact, dateBirthContact, nicknameContact }: ContactCreated): Promise<Contacts> {
+  async saveContact({ nameContact, dateBirthContact, nicknameContact }: ContactCreate): Promise<Contacts> {
     let contact = this.constructContact({ nameContact, dateBirthContact, nicknameContact });
     const contactExist = this.findContactByContactInformation({ nameContact, dateBirthContact, nicknameContact });
     contactExist.then(value => contact.pkContact = value?.pkContact ?? contact.pkContact);
@@ -19,7 +19,7 @@ export default class ContactRepository {
     return contact;
   }
 
-  private async findContactByContactInformation({ nameContact, dateBirthContact, nicknameContact }: ContactCreated) {
+  private async findContactByContactInformation({ nameContact, dateBirthContact, nicknameContact }: ContactCreate) {
     return await this.repository.findOneBy({
       nameContact: nameContact,
       dateBirthContact: dateBirthContact,
@@ -27,7 +27,7 @@ export default class ContactRepository {
     });
   }
 
-  private constructContact({ nameContact, dateBirthContact, nicknameContact }: ContactCreated): Contacts {
+  private constructContact({ nameContact, dateBirthContact, nicknameContact }: ContactCreate): Contacts {
     return this.repository.create({ nameContact, dateBirthContact, nicknameContact });
   }
 }

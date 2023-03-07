@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('contacts', { schema: 'db_contacts' })
 export class Contacts {
-  @PrimaryGeneratedColumn({ type: 'int', name: 'pkContact' })
+  @PrimaryGeneratedColumn('identity', { type: 'int', name: 'pkContact' })
   pkContact: number;
 
   @Column('varchar', { name: 'nameContact', length: 255 })

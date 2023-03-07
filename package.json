@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-    "typeormRun": "ts-node-dev ./node_modules/typeorm/cli.js migration:run -- -d src/config/database/data-source "
+    "typeormRun": "ts-node-dev ./node_modules/typeorm/cli.js migration:run -d src/settings/database/data-source.ts"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,7 @@
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.5"
+
   },
   "dependencies": {
     "@types/joi": "^17.2.3",
