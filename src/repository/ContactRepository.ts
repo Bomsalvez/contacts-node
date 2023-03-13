@@ -13,8 +13,10 @@ export default class ContactRepository {
 
   async saveContact({ nameContact, dateBirthContact, nicknameContact }: ContactCreate): Promise<Contacts> {
     let contact = this.constructContact({ nameContact, dateBirthContact, nicknameContact });
-    const contactExist = this.findContactByContactInformation({ nameContact, dateBirthContact, nicknameContact });
-    contactExist.then(value => contact.pkContact = value?.pkContact ?? contact.pkContact);
+    const contactExist = await this.findContactByContactInformation({ nameContact, dateBirthContact, nicknameContact });
+    if (contactExist != null) {
+      contact.pkContact = contactExist.pkContact;
+    }
     contact = await this.repository.save(contact);
     return contact;
   }

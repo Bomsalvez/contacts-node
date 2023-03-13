@@ -10,7 +10,7 @@ export class CreateContact1677193679580 implements MigrationInterface {
             name: 'pkContact',
             type: 'int',
             isGenerated: true,
-            generationStrategy: 'identity',
+            generationStrategy: 'increment',
             isPrimary: true,
           }, {
             name: 'nameContact',

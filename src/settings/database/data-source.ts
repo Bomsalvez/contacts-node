@@ -5,8 +5,8 @@ import { Contacts } from '../../model/contact/entity/Contact';
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
-  host: 'mysql',
-  port: 3306,
+  host: 'localhost',
+  port: 3307,
   username: 'root',
   password: 'umaSenhaAi',
   database: 'db_contacts',
