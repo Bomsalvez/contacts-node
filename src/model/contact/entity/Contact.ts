@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Phonenumber } from '../../phonenumber/entity/Phonenumber';
 
 @Entity('contacts', { schema: 'db_contacts' })
 export class Contacts {
@@ -13,4 +14,7 @@ export class Contacts {
 
   @Column('varchar', { name: 'nicknameContact', nullable: true, length: 30 })
   nicknameContact: string;
+
+  @OneToMany(() => Phonenumber, (phonenumber) => phonenumber.fkContact)
+  phonenumbers: Phonenumber[];
 }
