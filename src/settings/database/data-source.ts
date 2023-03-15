@@ -7,8 +7,8 @@ import { Phonenumber } from '../../model/phonenumber/entity/Phonenumber';
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
-  host: 'localhost',
-  port: 3307,
+  host: 'mysql',
+  port: 3306,
   username: 'root',
   password: 'umaSenhaAi',
   database: 'db_contacts',

@@ -2,6 +2,7 @@ import { Contacts } from '@model/contact/entity/Contact';
 import { ContactCreate } from '@model/contact/module/ContactCreate';
 import { Repository } from 'typeorm';
 import { AppDataSource } from '@settings/database/data-source';
+import AppError from '@settings/exception/AppError';
 
 export default class ContactRepository {
   private repository: Repository<Contacts>;
@@ -11,13 +12,21 @@ export default class ContactRepository {
     this.repository = AppDataSource.getRepository(Contacts);
   }
 
-  async saveContact({ nameContact, dateBirthContact, nicknameContact }: ContactCreate): Promise<Contacts> {
+  public async saveContact({ nameContact, dateBirthContact, nicknameContact }: ContactCreate): Promise<Contacts> {
     let contact = this.constructContact({ nameContact, dateBirthContact, nicknameContact });
     const contactExist = await this.findContactByContactInformation({ nameContact, dateBirthContact, nicknameContact });
     if (contactExist != null) {
       contact.pkContact = contactExist.pkContact;
     }
     contact = await this.repository.save(contact);
+    return contact;
+  }
+
+  public async findContact(pkContact: number): Promise<Contacts> {
+    const contact = await this.repository.findOneBy({ pkContact: pkContact });
+    if (contact == null) {
+      throw new AppError('nao encontrado');
+    }
     return contact;
   }
 
@@ -32,4 +41,5 @@ export default class ContactRepository {
   private constructContact({ nameContact, dateBirthContact, nicknameContact }: ContactCreate): Contacts {
     return this.repository.create({ nameContact, dateBirthContact, nicknameContact });
   }
+
 }
